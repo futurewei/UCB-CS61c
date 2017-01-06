@@ -1,0 +1,48 @@
+const is used to specify variable value will not be changed.
+const double e=2.718819;
+const char msg[]= "warning"; //elements in array will not be altered.
+int strlen(const char[]); indicate that the function doesnt change that array.
+
+系统定义的strlen(s) function returns the length of its character.
+
+在系统里，每个string最后都包含一个'\0'
+int strlen(char s[])
+{
+	int i;
+	i=0;
+	while (s[i] != '\0')
+		++i;
+	return i;
+}
+
+A program begins executing main priot to others. 
+
+#include <stdio.h> include information about standard library.
+(printf就是a library fuction)
+
+Format: 打印输出格式：
+%d 指明integer格式    Each % construction in the first argument of printf is
+paired with the corresponding second argument,third,...Match up properly by number and type.
+例子：printf("%3d %6d\n", fahr, celsius);  print first nmber each line in a field 3 digits wide
+second in a field 6 digits wide.
+
+经典考题：
+I hand you a thousand $1 bills and ten envelopes. Your job is to find a way to put various numbers 
+of dollar bills in those ten envelopes so that no matter what amount of money I ask you for (between $1-1000),
+ you can simply hand me some combination of envelopes and always be assured of giving me the correct amount of cash.
+
+Env #01: 0000000001(2) = $1(10)
+Env #02: 0000000010(2) = $2(10)
+Env #03: 0000000100(2) = $4(10)
+Env #04: 0000001000(2) = $8(10)
+Env #05: 0000010000(2) = $16(10)
+Env #06: 0000100000(2) = $32(10)
+Env #07: 0001000000(2) = $64(10)
+Env #08: 0010000000(2) = $128(10)
+Env #09: 0100000000(2) = $256(10)
+Env #10: 1000000000(2) = $512(10)
+
+因为binary组合可以排序成任何10进制数字between 1----1024. 所以如果需要第几位的binary digit,就把那个钱包带上。 
+also，因为只负责分1000元，然而binary covers 0----1024,所以需要减去24. 所以第十个bag里的钱等于512-24=488.
+在1---488内，第十个包给个0块就好了，超过才需要用到第十个包。
+

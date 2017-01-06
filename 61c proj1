@@ -1,0 +1,37 @@
+main:
+如果输入的command line=-个或者超过1个， 写specify a dict,然后return 0退出
+如果用户只输入一个argument,运行。allocate hashtable来存dictionary
+
+
+3 variation: 1. original 2.convert to all lower case. 3. convert to all lower except for letter.
+对比dict如果找的到，就unchanged地输出到output.
+如果dict找不到，就append上[sic]再输出。
+
+
+
+int stringEquals:传入两个指针。 return nonzero如果两个string相等。 
+return 0不相等。！！！你读一个word from standard input,look up the word in dictionary. 字母大小写不一样的话，算不相等。
+
+void process_input: process standard input and copy it to standard output.
+应该就是如果stringEquals传过来不相等的信号，那么输出的时候append[sic]
+如果相等，输出的时候unchanged.
+so应该会在这里call stringEquals
+
+void read dictionary: read in every word in the dictionary and store it in the dictionary. 
+需要使用malloc() for each word. 动态的增加所需要的内存。
+如果file不存在，print message to stdeer. 
+
+
+
+两个extern 函数都在hashtable.c里具体定义。
+extern void insertData(HashTable *table, void *key, void *data);
+往hashtable里添加key和data。
+往hashtable里添加存储string的话，把pointer转换为void type.
+比如：insertData(someHashTable, (void *) string, (void *) string);
+这样存了一个key，一个string 都是void pointer.
+
+
+
+extern void *findData(HashTable *table, void *key);
+有点像查找value函数。给一个key，我告诉你value是多少
+

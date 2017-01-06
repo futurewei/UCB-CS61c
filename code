@@ -1,0 +1,156 @@
+
+printf( "hello, world\n");
+When a character string like this appears in a program, access to it is through a character pointer; printf receives a pointer to the beginning of the character array. That is, a string constant is accessed by a pointer to its first element.
+
+c语言里,不同类型指针大小都一样。(int char。。。) 因为指针存放的是地址，地址都是一样长度的。
+32位系统 CPU用32位表示一个内存地址。 4 bytes=32 bits
+64位系统， CPU用64位表示一个地址   8 bytes=64 bits.
+
+
+
+****
+constant 用来specify that the value of a variable will not be changed.
+如：const double e=2.71828;  const char msg[]="hihi";
+
+
+也可以用来修饰array arguments. indicate function does not
+change that array
+int strlen(const char[]);
+
+
+char *pmessage;  //its a pointer
+then the statement
+pmessage = "now is the time";
+assigns to pmessaqe a pointer to the character array.
+
+
+charamessage[]="nowisthetime"; it is an array
+char *pmessage ="now is the time"; a pointer 
+
+-----------------------
+chapter 1.9
+
+#include <stdio.h>
+
+int getline(char line[], int maxline);
+void copy(char to[], char from[]);
+
+main( )
+{
+	int len;  //current line length
+	int max;  //maximum length seen so far!!!  分别max和MAXLINE的区别！！！
+	char line[MAXLINE];  //current input line, define a char array, max size is MAXLINE.
+	char longest[MAXLINE]; //longest line saved here
+	max = 0; 
+	while((len=getline(line,MAXLINE) >0)  //while there is another line
+		if (len> max) {
+		 max = len;
+		copy{longest, line);
+	}
+
+	if (max> 0) 
+		printf{"%s", longest);
+    return 0; 
+ }
+
+//read a lne into s, return length
+int getline{char s[], int lim)
+{
+	int c, i;   //!!!!!!!!用c来装getchar的值。
+	for (i=O; i<lim-1 && (c=getchar())!= EOF && c!='\n'; ++i)  //只要换行了(c=='\n')，循环就会停下，或者整个文档都读完了，也会停下。或者array s装不下了。
+		s[i] = c;
+	//如果不是因为end of file,而是换行的话：
+	if (c == '\n') { 
+		s[i] =c;
+		++i;
+	}
+	s[i] = '\0'; 
+	return i;  //i表示length
+}
+
+void copy{char tor[], char from[])
+{
+	int i;
+	i =0;
+	while （(to[i] = from[i]) 1= '\0')
+		++i;
+}
+
+
+
+function的声明与定义：
+#include <stdio.h>
+
+//outside of main();
+int power(int m, int n); 声明
+
+main(){
+	...
+	power(2, 4);
+	return 0; //表示正常运行
+}
+
+//定义  outside of main()
+int power(int base, int n)
+{
+	
+	...
+	return p;
+}
+
+//求string长度。!!!
+int strlen(char s[])
+{
+	int i;
+	i=0;
+	while (s[i]!='\0'){
+		++i;
+	}
+	return i;
+}
+//another version
+int strlen(char *s)
+{
+   int n;
+   for (n=0; *s!=‘\0’; s++)
+	n++;
+   return n;
+}
+
+
+chapter 5.10
+argc: number of strings in command line.   是一个int数字!
+*argv: ponter to an array containing the arguments as string.
+
+argc is 2 when the program is run with one command-line argument. If it's run with no arguments, or more than one, the argc != 2
+echo hello, world
+
+#include <stdio.h>
+main(int argc, char *argv[])
+{
+	int i;
+	for(i=1; i< argc; i++)
+		printf("%s%s", argc[i], (i<argc-1) ? " " : "");
+	printf("\n");
+	return 0;
+}
+
+
+int main(int argc, char** argv)
+In this case, argv is a pointer to an array of char*.
+
+
+
+
+#include <stdio.h>
+
+main(int argc, char *argv[])
+{
+	while(--argc>0)
+		printf("%s%s", *++argv, (argc>1) ? " ": "");
+	printf("\n");
+	return 0;
+}
+
+
+//pattern find
